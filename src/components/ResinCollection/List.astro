@@ -1,0 +1,25 @@
+---
+import type { MDXInstance } from "astro";
+import Card from "./Card.astro";
+
+interface Props {
+  title: string;
+  resins: MDXInstance<Record<string, any>>[];
+  sortingMethod?: (a: MDXInstance<Record<string, any>>, b: MDXInstance<Record<string, any>>) => number;
+  disableLinks: boolean
+}
+
+const {title, resins, sortingMethod = (a, b) => 0, disableLinks} = Astro.props;
+---
+
+<main class="flex w-full flex-grow items-center flex-col p-4">
+  <div class="max-w-2xl flex flex-col items-center gap-4">
+    <h2 class="text-2xl px-4">Resin {title}</h2>
+    <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      {resins.sort(sortingMethod).map((resin) => {
+        return <Card url={resin.url!} {...resin.frontmatter} disableLink={disableLinks} />
+      })}
+    </ul>
+    <p class="text-xs italic px-4">This is not a complete list, more resins will be added...</p>
+  </div>
+</main>

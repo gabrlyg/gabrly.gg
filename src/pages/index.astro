@@ -1,15 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Header from '../components/Header/Header.astro';
 import Link from '../components/Link.astro';
 
 const TITLE = 'GABRLYG'
 ---
 
 <Layout title=`${TITLE}`>
-	<!-- <Header /> -->
-	<main class="flex items-center w-full h-screen justify-center">
-		<p class="max-w-[220px]">While the home page is under construction, may I interest you with <Link id="resin-collectoin" href="/resin" label='my artisan keycaps collection'/>.</p>
+	<main class="flex items-center w-full justify-center flex-grow px-4">
+		<p class="italic">While the home page is under construction, may I interest you with <Link id="resin-wishlist" href="/resin/wishlist" label='my resin keycaps wishlist'/>?</p>
 	</main>
 </Layout>

@@ -1,10 +1,9 @@
 ---
-import Header from '../../../components/Header/Header.astro';
-import Layout from '../../../layouts/Layout.astro';
-import Card from '../../../components/ResinCollection/Card.astro';
 import type { MDXInstance } from 'astro';
+import Layout from '../../../layouts/Layout.astro';
+import List from '../../../components/ResinCollection/List.astro';
 
-const allResinCollection = await Astro.glob('./*.mdx');
+const resins = await Astro.glob('./*.mdx');
 
 const sortResinByRanking = (a: MDXInstance<Record<string, any>>, b: MDXInstance<Record<string, any>>) => {
   const aRanking = a.frontmatter.ranking || 0;
@@ -13,18 +12,8 @@ const sortResinByRanking = (a: MDXInstance<Record<string, any>>, b: MDXInstance<
   return bRanking - aRanking;
 }
 
-const disableLink = true;
+const disableLinks = true;
 ---
-
-<Layout title="Resin Collection | GABRLYG">
-  <main class="flex w-full h-screen items-center flex-col p-4">
-    <div class="max-w-2xl flex flex-col items-center">
-      <h2 class="text-2xl pb-2">WTB: Clacks</h2>
-      <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {allResinCollection.sort(sortResinByRanking).map((resin) => {
-          return <Card url={resin.url!} {...resin.frontmatter} disableLink={disableLink} />
-        })}
-      </ul>
-    </div>
-  </main>
+<Layout title="Resin Wishlist | GABRLYG">
+  <List title="Wishlist" resins={resins} disableLinks={disableLinks} sortingMethod={sortResinByRanking} />
 </Layout>

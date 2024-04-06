@@ -1,19 +1,14 @@
 ---
-import Header from '../../../components/Header/Header.astro';
+import type { MDXInstance } from 'astro';
 import Layout from '../../../layouts/Layout.astro';
-import Card from '../../../components/ResinCollection/Card.astro';
+import List from '../../../components/ResinCollection/List.astro';
 
-const allResinCollection = await Astro.glob('./*.mdx');
+const resins = await Astro.glob('./*.mdx');
+
+const disableLinks = true;
 ---
-
 <Layout title="Resin Collection | GABRLYG">
-  <main class="flex w-full h-screen items-center flex-col">
-    <Header />
-    <ul>
-      {allResinCollection.map((resin) => {
-        // const { url, colourway, sculpt, mount, maker, thumbnail } = resin.frontmatter;
-        return <Card url={resin.url!} {...resin.frontmatter} />
-      })}
-    </ul>
-  </main>
+  <List title="Collection" resins={resins} disableLinks={disableLinks} />
 </Layout>
+
+

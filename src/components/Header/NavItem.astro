@@ -1,0 +1,21 @@
+---
+interface Props {
+  href: string;
+}
+
+const {href} = Astro.props;
+
+const isActive = (href: string) => {
+  if (href === '/') {
+    return Astro.url.pathname === '/';
+  }
+  // paths like /resin/wishlist and /resin/collection both fall under the /resin navigation item
+  // and /resin navigation should redirect to one of them automatically, which i haven't decided.
+  return Astro.url.pathname.startsWith(href);
+}
+---
+<li>
+  <a href={href} class={`${isActive(href) ? 'underline' : ''} hover:underline`}>
+    <slot />
+  </a>
+</li>
