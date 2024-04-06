@@ -1,0 +1,30 @@
+---
+import Header from '../../../components/Header/Header.astro';
+import Layout from '../../../layouts/Layout.astro';
+import Card from '../../../components/ResinCollection/Card.astro';
+import type { MDXInstance } from 'astro';
+
+const allResinCollection = await Astro.glob('./*.mdx');
+
+const sortResinByRanking = (a: MDXInstance<Record<string, any>>, b: MDXInstance<Record<string, any>>) => {
+  const aRanking = a.frontmatter.ranking || 0;
+  const bRanking = b.frontmatter.ranking || 0;
+
+  return bRanking - aRanking;
+}
+
+const disableLink = true;
+
+---
+
+<Layout title="Resin Collection | GABRLYG">
+  <main class="flex w-full h-screen items-center flex-col p-4">
+    <Header />
+    <ul class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      {allResinCollection.sort(sortResinByRanking).map((resin) => {
+        // const { url, colourway, sculpt, mount, maker, thumbnail } = resin.frontmatter;
+        return <Card url={resin.url!} {...resin.frontmatter} disableLink={disableLink} />
+      })}
+    </ul>
+  </main>
+</Layout>

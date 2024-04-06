@@ -1,0 +1,38 @@
+---
+interface Props {
+  url: string;
+  colourway?: string;
+  sculpt?: string;
+  mount?: string;
+  maker?: string;
+  thumbnail?: string;
+  note?: string;
+  priority?: string;
+  disableLink?: boolean;
+}
+
+const {
+  url,
+  colourway = '?',
+  sculpt = '?',
+  mount,
+  maker = '?',
+  thumbnail,
+  note,
+  priority,
+  disableLink = false
+} = Astro.props;
+
+const label = `${colourway} - ${sculpt}${mount && ` (${mount})`} - ${maker}`;
+
+---
+
+<a {...(disableLink ? {} : {href: url})} aria-disabled={disableLink} role="link" aria-label={label}>
+  <div class="flex flex-col border-solid border-2 rounded-lg">
+    <div class="max-h-32 overflow-hidden flex items-center justify-center"><img src={thumbnail} alt={label} /></div>
+    <p class="p-2">{label}</p>
+    <div class="flex flex-row p-2">
+      {priority && <span class="bg-blue-200 rounded-full text-xs px-2 py-[0.5]">Priority: {priority}</span>}
+    </div>
+  </div>
+</a>
