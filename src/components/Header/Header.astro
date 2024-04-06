@@ -2,7 +2,9 @@
 import Title from './Title.astro';
 ---
 
-<header>
-  <Title />
-  Header goes here
+<header class="flex flex-row w-full sticky h-24 justify-center items-center p-4 border-b-2">
+  <div class="flex w-full flex-row justify-between max-w-2xl">
+    <Title />
+    Nav goes here
+  </div>
 </header>

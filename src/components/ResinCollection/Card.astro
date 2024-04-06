@@ -1,4 +1,6 @@
 ---
+import Label from './Label.astro';
+
 interface Props {
   url: string;
   colourway?: string;
@@ -28,11 +30,15 @@ const label = `${colourway} - ${sculpt}${mount && ` (${mount})`} - ${maker}`;
 ---
 
 <a {...(disableLink ? {} : {href: url})} aria-disabled={disableLink} role="link" aria-label={label}>
-  <div class="flex flex-col border-solid border-2 rounded-lg">
-    <div class="max-h-32 overflow-hidden flex items-center justify-center"><img src={thumbnail} alt={label} /></div>
-    <p class="p-2">{label}</p>
-    <div class="flex flex-row p-2">
-      {priority && <span class="bg-blue-200 rounded-full text-xs px-2 py-[0.5]">Priority: {priority}</span>}
+  <div class="flex flex-col rounded-lg shadow-md overflow-hidden">
+    <div class="aspect-4/3 overflow-hidden flex items-center justify-center">
+      <img class="w-full" src={thumbnail} alt={label} />
+    </div>
+    <p class="p-2">{colourway} - {sculpt}</p>
+    <div class="flex flex-row p-2 gap-2 text-wrap flex-wrap">
+      {maker && <Label type="maker" value={maker} />}
+      {mount && <Label type="mount" value={mount} />}
+      {priority && <Label type="priority" value={priority} />}
     </div>
   </div>
 </a>

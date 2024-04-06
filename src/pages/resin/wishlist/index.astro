@@ -14,17 +14,17 @@ const sortResinByRanking = (a: MDXInstance<Record<string, any>>, b: MDXInstance<
 }
 
 const disableLink = true;
-
 ---
 
 <Layout title="Resin Collection | GABRLYG">
   <main class="flex w-full h-screen items-center flex-col p-4">
-    <Header />
-    <ul class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-4">
-      {allResinCollection.sort(sortResinByRanking).map((resin) => {
-        // const { url, colourway, sculpt, mount, maker, thumbnail } = resin.frontmatter;
-        return <Card url={resin.url!} {...resin.frontmatter} disableLink={disableLink} />
-      })}
-    </ul>
+    <div class="max-w-2xl flex flex-col items-center">
+      <h2 class="text-2xl pb-2">WTB: Clacks</h2>
+      <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        {allResinCollection.sort(sortResinByRanking).map((resin) => {
+          return <Card url={resin.url!} {...resin.frontmatter} disableLink={disableLink} />
+        })}
+      </ul>
+    </div>
   </main>
 </Layout>
