@@ -66,10 +66,11 @@ const Draggable: React.FC<DraggableProps> = ({ src }) => {
   };
 
   useEffect(() => {
+    const options = isDragging ? { passive: false } : undefined;
     if (isDragging) {
       document.addEventListener('mousemove', onDrag);
       document.addEventListener('mouseup', onDragStop);
-      document.addEventListener('touchmove', onDrag);
+      document.addEventListener('touchmove', onDrag, options);
       document.addEventListener('touchend', onDragStop);
     } else {
       document.removeEventListener('mousemove', onDrag);
