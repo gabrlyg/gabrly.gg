@@ -30,11 +30,13 @@ const Draggable: React.FC<DraggableProps> = ({ src }) => {
     y: 0,
   });
 
+  const isTouchDevice = typeof TouchEvent !== 'undefined';
+
   const getCursorPosition = (e: MouseEvent | TouchEvent) => {
-    if (e instanceof TouchEvent) {
-      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
-    } else {
+    if (e instanceof MouseEvent) {
       return { x: e.clientX, y: e.clientY };
+    } else {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
     }
   };
 
@@ -70,20 +72,26 @@ const Draggable: React.FC<DraggableProps> = ({ src }) => {
     if (isDragging) {
       document.addEventListener('mousemove', onDrag);
       document.addEventListener('mouseup', onDragStop);
-      document.addEventListener('touchmove', onDrag, options);
-      document.addEventListener('touchend', onDragStop);
+      if (isTouchDevice) {
+        document.addEventListener('touchmove', onDrag, options);
+        document.addEventListener('touchend', onDragStop);
+      }
     } else {
       document.removeEventListener('mousemove', onDrag);
       document.removeEventListener('mouseup', onDragStop);
-      document.removeEventListener('touchmove', onDrag);
-      document.removeEventListener('touchend', onDragStop);
+      if (isTouchDevice) {
+        document.removeEventListener('touchmove', onDrag);
+        document.removeEventListener('touchend', onDragStop);
+      }
     }
 
     return () => {
       document.removeEventListener('mousemove', onDrag);
       document.removeEventListener('mouseup', onDragStop);
-      document.removeEventListener('touchmove', onDrag);
-      document.removeEventListener('touchend', onDragStop);
+      if (isTouchDevice) {
+        document.removeEventListener('touchmove', onDrag);
+        document.removeEventListener('touchend', onDragStop);
+      }
     };
   }, [isDragging, onDragStop, onDrag]);
 
