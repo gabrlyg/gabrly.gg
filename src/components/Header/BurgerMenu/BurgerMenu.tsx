@@ -1,6 +1,22 @@
 import React, { useState, type MouseEventHandler } from 'react';
 import NavLink from './NavLink';
 
+const Icon: React.FC<{ expanded: boolean }> = ({ expanded }) => {
+  return (
+    <div className="flex flex-col justify-between items-end h-5 w-5 overflow-hidden">
+      <div
+        className={`bg-black h-[3px] w-6 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[-43deg]' : ''}`}
+      />
+      <div
+        className={`bg-black h-[3px] w-1/2 transform transition-all origin-right duration-300 ${expanded ? 'translate-x-10' : ''}`}
+      />
+      <div
+        className={`bg-black h-[3px] w-6 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[43deg]' : ''}`}
+      />
+    </div>
+  );
+};
+
 const BurgerMenu: React.FC<{}> = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
@@ -21,10 +37,11 @@ const BurgerMenu: React.FC<{}> = () => {
             <a href="/">GABRLYG</a>
           </h1>
           <button
-            className="inline-block sm:hidden w-9 h-9 rounded-md active:bg-gray-200 z-[999]"
+            className="inline-flex items-center justify-center sm:hidden w-9 h-9 rounded-md active:bg-gray-200 z-[999]"
             onClick={onPress}
           >
-            <img src="/burger-menu.svg" />
+            <Icon expanded={isExpanded} />
+            {/* <img src="/burger-menu.svg" /> */}
           </button>
           <ul className="hidden sm:flex flex-row gap-4">
             <li>
