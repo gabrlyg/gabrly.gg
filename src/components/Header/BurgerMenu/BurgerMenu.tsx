@@ -43,7 +43,7 @@ const BurgerMenu: React.FC<{}> = () => {
             <Icon expanded={isExpanded} />
             {/* <img src="/burger-menu.svg" /> */}
           </button>
-          <ul className="hidden sm:flex flex-row gap-4">
+          <ul className="hidden sm:flex flex-row gap-4 text-lg">
             <li>
               <a href="/keyboard">Keyboard</a>
             </li>
