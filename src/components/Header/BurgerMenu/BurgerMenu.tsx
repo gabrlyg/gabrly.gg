@@ -34,7 +34,9 @@ const BurgerMenu: React.FC<{}> = () => {
       <nav className="max-w-2xl w-full flex justify-center items-center flex-col sm:flex-row">
         <div className="h-24 flex flex-row justify-between items-center p-4 flex-wrap sm:flex-nowrap w-full">
           <h1 className="text-2xl font-bold">
-            <a href="/">GABRLYG</a>
+            <a href="/">
+              <img className="w-10 h-10" src="/assets/logo.svg" />
+            </a>
           </h1>
           <button
             className="inline-flex items-center justify-center sm:hidden w-9 h-9 rounded-md active:bg-gray-200 z-[999]"
