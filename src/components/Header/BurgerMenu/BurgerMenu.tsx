@@ -35,7 +35,7 @@ const BurgerMenu: React.FC<{}> = () => {
         <div className="h-24 flex flex-row justify-between items-center p-4 flex-wrap sm:flex-nowrap w-full">
           <h1 className="text-2xl font-bold">
             <a href="/">
-              <img className="w-10 h-10" src="/assets/logo.svg" />
+              <img className="w-10 h-10" src="/assets/favicon.svg" />
             </a>
           </h1>
           <button
