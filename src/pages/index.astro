@@ -2,11 +2,22 @@
 import Layout from '../layouts/Layout.astro';
 import Link from '../components/Link.astro';
 
-const TITLE = 'GABRLYG'
+const TITLE = 'GABRLYG';
 ---
 
 <Layout title=`${TITLE}`>
-	<main class="flex items-center w-full justify-center flex-grow px-4">
-		<p class="italic">While the home page is under construction, may I interest you with <Link id="resin-wishlist" href="/resin/wishlist" label='my resin keycaps wishlist'/>?</p>
-	</main>
+  <main class="flex w-full justify-center flex-grow px-4 flex-col max-w-2xl">
+    <!-- <p class="italic">
+      While the home page is under construction, may I interest you with <Link
+        id="resin-wishlist"
+        href="/resin/wishlist"
+        label="my resin keycaps wishlist"
+      />?
+    </p> -->
+    <h2 class="text-2xl font-bold">I'm Gabriel Yang</h2>
+    <p class="pt-4">
+      A Software Engineer, a street photographer, a keyboard enthusiast, and an
+      artisan keycaps collector.
+    </p>
+  </main>
 </Layout>
