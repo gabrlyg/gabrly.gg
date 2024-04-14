@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Draggable from './Draggable';
+import { useStore } from '@nanostores/react';
+import { isGlorpModeOn } from '../stores/glorpStore';
 
 const Glorp = () => {
-  const [isEnabled, setIsEnabled] = useState<boolean>(false);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-    return () => {
-      setIsMounted(false);
-    };
-  }, []);
-
-  useEffect(() => {
-    isMounted && setIsEnabled(localStorage.getItem('glorp-mode') === 'on');
-  }, [isMounted]);
+  const $isGlorpModeOn = useStore(isGlorpModeOn);
 
   return (
-    <div className={isEnabled ? '' : 'hidden'}>
+    <div className={$isGlorpModeOn ? '' : 'hidden'}>
       <Draggable src="/emojis/glorp.webp" />
     </div>
   );

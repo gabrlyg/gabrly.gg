@@ -1,4 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { isGlorpModeOn } from '../../stores/glorpStore';
+import { useStore } from '@nanostores/react';
 
 interface LogoProps {
   darkMode?: boolean;
@@ -11,10 +13,6 @@ interface NavButtonProps {
 
 interface NavigationMenuProps {
   isExpanded: boolean;
-  darkMode?: boolean;
-  glorpMode: boolean;
-  setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
-  setGlorpMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface ToggleProps {
@@ -92,24 +90,19 @@ const Toggle: React.FC<ToggleProps> = ({ label, isOn, toggle }) => {
   );
 };
 
-const NavigationMenu: React.FC<NavigationMenuProps> = ({
-  isExpanded,
-  darkMode,
-  glorpMode,
-  setDarkMode,
-  setGlorpMode,
-}) => {
-  const handleGlorpModeToggle = useCallback(() => {
+const NavigationMenu: React.FC<NavigationMenuProps> = ({ isExpanded }) => {
+  const $isGlorpModeOn = useStore(isGlorpModeOn);
+  const toggleGlorpMode = useCallback(() => {
     if (typeof localStorage !== 'undefined') {
       if (localStorage.getItem('glorp-mode') === 'on') {
         localStorage.setItem('glorp-mode', 'off');
-        setGlorpMode(false);
+        isGlorpModeOn.set(false);
       } else {
         localStorage.setItem('glorp-mode', 'on');
-        setGlorpMode(true);
+        isGlorpModeOn.set(true);
       }
     }
-  }, [glorpMode, setGlorpMode]);
+  }, [isGlorpModeOn]);
 
   return (
     <div
@@ -126,8 +119,8 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
         <li>
           <Toggle
             label="Glorp"
-            isOn={glorpMode}
-            toggle={handleGlorpModeToggle}
+            isOn={$isGlorpModeOn}
+            toggle={toggleGlorpMode}
           />
         </li>
       </ul>
@@ -136,8 +129,6 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({
 };
 
 const Navigation: React.FC = () => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
-  const [glorpMode, setGlorpMode] = useState<boolean>(false);
   const [isSettingsMenuExpanded, setIsExpanded] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -153,7 +144,7 @@ const Navigation: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    isMounted && setGlorpMode(localStorage.getItem('glorp-mode') === 'on');
+    isMounted && isGlorpModeOn.set(localStorage.getItem('glorp-mode') === 'on');
   }, [isMounted]);
 
   return (
@@ -165,13 +156,7 @@ const Navigation: React.FC = () => {
         </div>
         <NavButton onPress={toggleMenu} isExpanded={isSettingsMenuExpanded} />
       </div>
-      <NavigationMenu
-        isExpanded={isSettingsMenuExpanded}
-        darkMode={darkMode}
-        glorpMode={glorpMode}
-        setDarkMode={setDarkMode}
-        setGlorpMode={setGlorpMode}
-      />
+      <NavigationMenu isExpanded={isSettingsMenuExpanded} />
     </nav>
   );
 };
