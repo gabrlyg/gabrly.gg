@@ -1,8 +1,8 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import Footer from '../components/Footer/Footer.astro';
-import Header from '../components/Header/Header.astro';
-import Glorp from '../components/Glorp.jsx';
+import Header from '../components/Header/Header.tsx';
+import Glorp from '../components/Glorp.tsx';
 interface Props {
   title: string;
 }
@@ -28,7 +28,7 @@ const { title } = Astro.props;
     <ViewTransitions />
   </head>
   <body class="flex flex-col min-h-screen items-center font-lato text-sm">
-    <Header />
+    <Header client:load />
     <slot />
     <Glorp client:load />
     <Footer />

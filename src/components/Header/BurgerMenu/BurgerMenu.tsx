@@ -3,15 +3,15 @@ import NavLink from './NavLink';
 
 const Icon: React.FC<{ expanded: boolean }> = ({ expanded }) => {
   return (
-    <div className="flex flex-col justify-between items-end h-5 w-5 overflow-hidden">
+    <div className="flex flex-col justify-between items-end h-[21px] w-5 overflow-hidden">
       <div
-        className={`bg-black h-[3px] w-6 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[-43deg]' : ''}`}
+        className={`bg-black h-[1px] w-7 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[-44.25deg]' : ''}`}
       />
       <div
-        className={`bg-black h-[3px] w-1/2 transform transition-all origin-right duration-300 ${expanded ? 'translate-x-10' : ''}`}
+        className={`bg-black h-[1px] w-1/2 transform transition-all origin-right duration-300 ${expanded ? 'translate-x-10' : ''}`}
       />
       <div
-        className={`bg-black h-[3px] w-6 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[43deg]' : ''}`}
+        className={`bg-black h-[1px] w-7 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[44.25deg]' : ''}`}
       />
     </div>
   );
@@ -28,9 +28,7 @@ const BurgerMenu: React.FC<{}> = () => {
   const expand = () => setIsExpanded(true);
 
   return (
-    <div
-      className={`${!isExpanded ? 'bg-white/90 backdrop-blur-xl' : ''} flex w-full items-center justify-center`}
-    >
+    <div className="flex w-full items-center justify-center">
       <nav className="max-w-2xl w-full flex justify-center items-center flex-col sm:flex-row">
         <div className="h-24 flex flex-row justify-between items-center p-4 flex-wrap sm:flex-nowrap w-full">
           <h1 className="text-2xl font-bold">
