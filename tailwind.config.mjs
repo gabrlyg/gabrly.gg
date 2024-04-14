@@ -12,6 +12,9 @@ export default {
       fontFamily: {
         lato: ['"Lato"', ...defaultTheme.fontFamily.sans],
       },
+      boxShadow: {
+        'box-md': '4px 6px rgb(148 163 184 / var(--tw-border-opacity))',
+      },
     },
   },
   plugins: [],

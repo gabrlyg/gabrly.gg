@@ -22,15 +22,21 @@ const {
   thumbnail,
   note,
   priority,
-  disableLink = false
+  disableLink = false,
 } = Astro.props;
 
 const label = `${colourway} - ${sculpt}${mount && ` (${mount})`} - ${maker}`;
-
 ---
 
-<a {...(disableLink ? {} : {href: url})} aria-disabled={disableLink} role="link" aria-label={label}>
-  <div class="flex flex-col rounded-lg shadow-md overflow-hidden">
+<a
+  {...disableLink ? {} : { href: url }}
+  aria-disabled={disableLink}
+  role="link"
+  aria-label={label}
+>
+  <div
+    class="flex flex-col rounded-sm shadow-box-md overflow-hidden border-[1px] border-slate-600"
+  >
     <div class="aspect-4/3 overflow-hidden flex items-center justify-center">
       <img class="w-full" src={thumbnail} alt={label} />
     </div>

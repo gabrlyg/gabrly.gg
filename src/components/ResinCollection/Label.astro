@@ -1,15 +1,18 @@
 ---
 interface Props {
   value: string;
-  type: 'maker' | 'mount' | 'priority'
+  type: 'maker' | 'mount' | 'priority';
 }
 
 const BG_COLOUR = {
   maker: 'bg-emerald-200',
   mount: 'bg-orange-200',
-  priority: 'bg-indigo-200'
-}
+  priority: 'bg-indigo-200',
+};
 
-const {value, type} = Astro.props;
+const { value, type } = Astro.props;
 ---
-<span class={`${BG_COLOUR[type]} rounded-full text-xs px-2 py-[0.5] text-nowrap`}>{type === 'priority' ? `Priority: ${value}` : value}</span>
+
+<span class={`${BG_COLOUR[type]} rounded-lg text-xs px-2 py-[0.5] text-nowrap`}
+  >{type === 'priority' ? `Priority: ${value}` : value}</span
+>

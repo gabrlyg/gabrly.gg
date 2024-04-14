@@ -33,7 +33,7 @@ const BurgerMenu: React.FC<{}> = () => {
         <div className="h-24 flex flex-row justify-between items-center p-4 flex-wrap sm:flex-nowrap w-full">
           <h1 className="text-2xl font-bold">
             <a href="/">
-              <img className="w-10 h-10" src="/assets/favicon.svg" />
+              <img className="w-10 h-10" src="/assets/logo.svg" />
             </a>
           </h1>
           <button
@@ -58,7 +58,7 @@ const BurgerMenu: React.FC<{}> = () => {
               <NavLink href="/keyboard">Keyboard</NavLink>
               <NavLink href="/resin">Resin</NavLink>
             </ul>
-            <div className="fixed inset-0 -z-10 bg-white/90 backdrop-blur-xl"></div>
+            <div className="fixed inset-0 -z-10 bg-slate-100"></div>
           </>
         )}
       </nav>
