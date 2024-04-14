@@ -5,13 +5,13 @@ const Icon: React.FC<{ expanded: boolean }> = ({ expanded }) => {
   return (
     <div className="flex flex-col justify-between items-end h-[21px] w-5 overflow-hidden">
       <div
-        className={`bg-black h-[1px] w-7 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[-44.25deg]' : ''}`}
+        className={`bg-black h-[1px] w-7 transform transition-all origin-right duration-200 ${expanded ? 'rotate-[-44.25deg]' : ''}`}
       />
       <div
-        className={`bg-black h-[1px] w-1/2 transform transition-all origin-right duration-300 ${expanded ? 'translate-x-10' : ''}`}
+        className={`bg-black h-[1px] w-1/2 transform transition-all origin-right duration-200 ${expanded ? 'translate-x-10' : ''}`}
       />
       <div
-        className={`bg-black h-[1px] w-7 transform transition-all origin-right duration-300 ${expanded ? 'rotate-[44.25deg]' : ''}`}
+        className={`bg-black h-[1px] w-7 transform transition-all origin-right duration-200 ${expanded ? 'rotate-[44.25deg]' : ''}`}
       />
     </div>
   );
