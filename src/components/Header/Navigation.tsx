@@ -23,7 +23,7 @@ interface ToggleProps {
 
 const Logo: React.FC<LogoProps> = ({ darkMode }) => {
   return (
-    <h1 className="w-10 h-10">
+    <h1 className="w-12 h-12 mx-2">
       <a href="/">
         <img src="/assets/logo.svg" />
       </a>
