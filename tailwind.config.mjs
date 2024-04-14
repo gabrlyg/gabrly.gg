@@ -17,5 +17,25 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents, theme }) {
+      addComponents({
+        '.toggle-slider': {
+          content: '""',
+          borderRadius: '0.125rem',
+          backgroundColor: 'rgb(51 65 85)',
+          position: 'absolute',
+          display: 'inline-block',
+          width: '28px',
+          height: '28px',
+          top: '1px',
+          left: '1px',
+          transition: '0.2s',
+        },
+        '.toggle-slider-on': {
+          transform: 'translateX(32px)',
+        },
+      });
+    },
+  ],
 };

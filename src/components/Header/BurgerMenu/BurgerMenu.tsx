@@ -30,36 +30,38 @@ const BurgerMenu: React.FC<{}> = () => {
   return (
     <div className="flex w-full items-center justify-center">
       <nav className="max-w-2xl w-full flex justify-center items-center flex-col sm:flex-row">
-        <div className="h-24 flex flex-row justify-between items-center p-4 flex-wrap sm:flex-nowrap w-full">
+        <div className="h-24 flex flex-row justify-between items-center p-4 w-full">
           <h1 className="text-2xl font-bold">
             <a href="/">
               <img className="w-10 h-10" src="/assets/logo.svg" />
             </a>
           </h1>
-          <button
-            className="inline-flex items-center justify-center sm:hidden w-9 h-9 rounded-md active:bg-gray-200 z-[999]"
-            onClick={onPress}
-          >
-            <Icon expanded={isExpanded} />
-            {/* <img src="/burger-menu.svg" /> */}
-          </button>
-          <ul className="hidden sm:flex flex-row gap-4 text-lg">
-            <li>
-              <a href="/keyboard">Keyboard</a>
-            </li>
-            <li>
-              <a href="/resin">Resin</a>
-            </li>
-          </ul>
+          <div className="flex flex-row gap-4 items-center flex-wrap">
+            <ul className="hidden sm:flex flex-row gap-4 text-lg">
+              <li>
+                <a href="/keyboard">Keyboard</a>
+              </li>
+              <li>
+                <a href="/resin">Resin</a>
+              </li>
+            </ul>
+            <button
+              className="inline-flex items-center justify-center w-9 h-9 rounded-md active:bg-gray-200 z-[999]"
+              onClick={onPress}
+            >
+              <Icon expanded={isExpanded} />
+              {/* <img src="/burger-menu.svg" /> */}
+            </button>
+          </div>
         </div>
         {isExpanded && (
-          <>
-            <ul className="flex flex-col gap-4 p-4 w-full z-40">
+          <div className="w-full flex flex-col gap-4 py-4 px-8 flex-grow">
+            <ul className="flex flex-col gap-4 w-full z-40 sm:hidden">
               <NavLink href="/keyboard">Keyboard</NavLink>
               <NavLink href="/resin">Resin</NavLink>
             </ul>
-            <div className="fixed inset-0 -z-10 bg-slate-100"></div>
-          </>
+            <div className="fixed inset-0 -z-10 bg-slate-100" />
+          </div>
         )}
       </nav>
     </div>
