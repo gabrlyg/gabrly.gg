@@ -84,7 +84,7 @@ const Toggle: React.FC<ToggleProps> = ({ label, isOn, toggle }) => {
         onChange={toggle}
       />
       <span
-        className={`h-8 w-16 rounded-sm border-[2px] relative border-slate-700 before:toggle-slider peer-checked/checkbox:before:toggle-slider-on`}
+        className={`h-8 w-16 rounded-sm border-[2px] relative border-slate-700 ${isOn ? 'bg-slate-700' : ''} before:toggle-slider peer-checked/checkbox:before:toggle-slider-on transition-all duration-200`}
         role="checkbox"
         onClick={toggle}
       />

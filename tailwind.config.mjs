@@ -34,6 +34,7 @@ export default {
         },
         '.toggle-slider-on': {
           transform: 'translateX(32px)',
+          backgroundColor: 'rgb(226 232 240)',
         },
       });
     },
