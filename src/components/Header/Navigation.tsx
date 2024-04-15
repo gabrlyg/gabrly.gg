@@ -84,7 +84,7 @@ const Toggle: React.FC<ToggleProps> = ({ label, isOn, toggle }) => {
         onChange={toggle}
       />
       <span
-        className={`h-8 w-16 rounded-sm border-[2px] relative border-slate-700 ${isOn ? 'bg-slate-700' : ''} before:toggle-slider peer-checked/checkbox:before:toggle-slider-on transition-all duration-200`}
+        className={`h-8 w-16 rounded-sm border-[2px] relative border-slate-700 ${isOn ? 'bg-slate-700' : 'bg-slate-100'} before:toggle-slider peer-checked/checkbox:before:toggle-slider-on transition-all duration-200`}
         role="checkbox"
         onClick={toggle}
       />
@@ -93,7 +93,9 @@ const Toggle: React.FC<ToggleProps> = ({ label, isOn, toggle }) => {
 };
 
 const NavigationMenu: React.FC<NavigationMenuProps> = ({ isExpanded }) => {
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const $isGlorpModeOn = useStore(isGlorpModeOn);
+
   const toggleGlorpMode = useCallback(() => {
     if (typeof localStorage !== 'undefined') {
       if (localStorage.getItem('glorp-mode') === 'on') {
@@ -105,6 +107,13 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isExpanded }) => {
       }
     }
   }, [isGlorpModeOn]);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => {
+      setIsMounted(false);
+    };
+  }, []);
 
   return (
     <div
@@ -124,7 +133,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isExpanded }) => {
         <li>
           <Toggle
             label="Glorp"
-            isOn={$isGlorpModeOn}
+            isOn={isMounted && $isGlorpModeOn}
             toggle={toggleGlorpMode}
           />
         </li>
