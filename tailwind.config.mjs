@@ -11,6 +11,7 @@ export default {
       },
       fontFamily: {
         lato: ['"Lato"', ...defaultTheme.fontFamily.sans],
+        'jetbrains-mono': ['"JetBrains Mono"', ...defaultTheme.fontFamily.mono],
       },
       boxShadow: {
         'box-md': '4px 6px rgb(148 163 184 / var(--tw-border-opacity))',
