@@ -1,10 +1,16 @@
 import React from 'react';
 import Navigation from './Navigation';
 
-const Header: React.FC = () => {
+interface Props {
+  isHomePage?: boolean;
+}
+
+const Header: React.FC<Props> = ({ isHomePage }) => {
   return (
-    <header className="w-full sticky left-0 top-0 right-0 flex flex-row justify-center bg-slate-100">
-      <Navigation />
+    <header
+      className={`w-full ${isHomePage ? '' : 'sticky'} left-0 top-0 right-0 flex flex-row justify-center bg-slate-100`}
+    >
+      <Navigation isHomePage={isHomePage} />
     </header>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { isGlorpModeOn } from '../../stores/glorpStore';
 import { useStore } from '@nanostores/react';
+import Logo from '../Logo';
 
-interface LogoProps {
-  darkMode?: boolean;
+interface Props {
+  isHomePage?: boolean;
 }
 
 interface NavButtonProps {
@@ -20,16 +21,6 @@ interface ToggleProps {
   isOn: boolean;
   toggle: () => void;
 }
-
-const Logo: React.FC<LogoProps> = ({ darkMode }) => {
-  return (
-    <h1 className="w-12 h-12 mx-2">
-      <a href="/">
-        <img src="/assets/logo.svg" />
-      </a>
-    </h1>
-  );
-};
 
 const LinksList: React.FC = () => {
   return (
@@ -142,7 +133,7 @@ const NavigationMenu: React.FC<NavigationMenuProps> = ({ isExpanded }) => {
   );
 };
 
-const Navigation: React.FC = () => {
+const Navigation: React.FC<Props> = ({ isHomePage }) => {
   const [isSettingsMenuExpanded, setIsExpanded] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -163,7 +154,13 @@ const Navigation: React.FC = () => {
 
   return (
     <nav className="w-full flex items-center h-24 max-w-2xl p-4 relative">
-      <Logo />
+      {!isHomePage && (
+        <h1 className="w-12 h-12 mx-2">
+          <a href="/">
+            <Logo />
+          </a>
+        </h1>
+      )}
       <div className="flex flex-row items-center gap-4 flex-grow justify-end">
         <div className="hidden md:inline-flex">
           <LinksList />
