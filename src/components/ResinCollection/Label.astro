@@ -13,6 +13,6 @@ const BG_COLOUR = {
 const { value, type } = Astro.props;
 ---
 
-<span class={`${BG_COLOUR[type]} rounded-lg text-xs px-2 py-[0.5] text-nowrap`}
+<span class={`${BG_COLOUR[type]} rounded-sm text-xs px-2 py-[1px] text-nowrap`}
   >{type === 'priority' ? `Priority: ${value}` : value}</span
 >

@@ -35,16 +35,18 @@ const label = `${colourway} - ${sculpt}${mount && ` (${mount})`} - ${maker}`;
   aria-label={label}
 >
   <div
-    class="flex flex-col rounded-sm shadow-box-md overflow-hidden border-[2px] border-slate-600"
+    class="flex flex-col rounded-sm shadow-box-md overflow-hidden border-[2px] border-slate-600 gap-2"
   >
     <div class="aspect-4/3 overflow-hidden flex items-center justify-center">
       <img class="object-cover w-full h-full" src={thumbnail} alt={label} />
     </div>
-    <label class="p-2">{colourway} - {sculpt}</label>
-    <div class="flex flex-row p-2 gap-2 text-wrap flex-wrap">
-      {maker && <Label type="maker" value={maker} />}
-      {mount && <Label type="mount" value={mount} />}
-      {priority && <Label type="priority" value={priority} />}
+    <div class="flex flex-col px-2 pb-3 gap-2">
+      <label class="text-sm">{colourway} - {sculpt}</label>
+      <div class="flex flex-row gap-2 text-wrap flex-wrap">
+        {maker && <Label type="maker" value={maker} />}
+        {mount && <Label type="mount" value={mount} />}
+        {priority && <Label type="priority" value={priority} />}
+      </div>
     </div>
   </div>
 </a>

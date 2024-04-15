@@ -29,7 +29,7 @@ const { title, isHomePage } = Astro.props;
     <ViewTransitions />
   </head>
   <body
-    class="flex flex-col min-h-screen items-center font-lato text-sm text-slate-900 bg-slate-100"
+    class="flex flex-col min-h-screen items-center font-lato text-slate-900 bg-slate-100"
   >
     <Header client:load isHomePage={isHomePage} />
     <slot />
