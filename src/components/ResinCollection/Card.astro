@@ -38,7 +38,7 @@ const label = `${colourway} - ${sculpt}${mount && ` (${mount})`} - ${maker}`;
     class="flex flex-col rounded-sm shadow-box-md overflow-hidden border-[2px] border-slate-600"
   >
     <div class="aspect-4/3 overflow-hidden flex items-center justify-center">
-      <img class="w-full" src={thumbnail} alt={label} />
+      <img class="object-cover w-full h-full" src={thumbnail} alt={label} />
     </div>
     <label class="p-2">{colourway} - {sculpt}</label>
     <div class="flex flex-row p-2 gap-2 text-wrap flex-wrap">
