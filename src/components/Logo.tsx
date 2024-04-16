@@ -16,7 +16,7 @@ const Logo: React.FC<LogoProps> = ({ darkMode }) => {
       fill="none"
       stroke="currentColor"
       strokeWidth={9.43}
-      className={darkMode ? 'stroke-slate-200' : 'stroke-slate-700'}
+      className={darkMode ? 'stroke-slate-200' : 'stroke-slate-900'}
     >
       <g transform="matrix(1,0,0,1.06084,-0.5,-9.12548)">
         <path d="M150,18.5L40,84L40,214.5L150,281.5L261,214.5L261,190.5L193.5,150.5L261,107L261,84L150,18.5Z" />
