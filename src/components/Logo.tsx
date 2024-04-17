@@ -5,7 +5,6 @@ interface LogoProps {
 }
 
 const Logo: React.FC<LogoProps> = ({ darkMode }) => {
-  // return <img src="/assets/logo.svg" className="stroke-red-700" />;
   return (
     <svg
       width="100%"
