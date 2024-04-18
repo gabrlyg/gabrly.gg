@@ -1,10 +1,11 @@
 ---
 import KeyboardGallery from '../../components/KeyboardGallery/KeyboardGallery';
 import Layout from '../../layouts/Layout.astro';
+import { fakeDB } from './fakeDB';
 ---
 
 <Layout title="Keyboard | GABRLYG">
-  <main class="flex flex-col items-center w-full justify-center flex-grow px-4">
-    <KeyboardGallery />
+  <main class="flex flex-col w-full flex-grow px-4 max-w-5xl">
+    <KeyboardGallery keyboards={fakeDB} />
   </main>
 </Layout>
