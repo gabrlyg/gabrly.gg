@@ -14,7 +14,7 @@ const Album: React.FC<Props> = ({ name, cover }) => {
   return (
     <div className="flex flex-col items-center gap-4">
       <img
-        className="aspect-3/2 object-cover"
+        className="aspect-4/3 object-cover"
         id={id}
         src={`${PHOTO_PATH_PREFIX}${cover}`}
       />
