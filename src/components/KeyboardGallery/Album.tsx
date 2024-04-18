@@ -5,6 +5,9 @@ interface Props {
   cover: string;
 }
 
+const PHOTO_PATH_PREFIX =
+  'https://s3.eu-west-2.amazonaws.com/gabrly.gg/gallery/keyboards/';
+
 const Album: React.FC<Props> = ({ name, cover }) => {
   const id = useId();
 
@@ -13,7 +16,7 @@ const Album: React.FC<Props> = ({ name, cover }) => {
       <img
         className="aspect-3/2 object-cover"
         id={id}
-        src={`/assets/keyboards/${cover}`}
+        src={`${PHOTO_PATH_PREFIX}${cover}`}
       />
       <label className="text-sm">{name}</label>
     </div>
