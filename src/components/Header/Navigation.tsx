@@ -26,7 +26,7 @@ const LinksList: React.FC = () => {
   return (
     <ul className="flex flex-col items-end md:flex-row gap-4 md:text-lg">
       <li>
-        <a href="/keyboard">Keyboard</a>
+        <a href="/keyboard-gallery">Keyboard</a>
       </li>
       <li>
         <a href="/resin">Resin</a>
