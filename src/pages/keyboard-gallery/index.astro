@@ -6,6 +6,6 @@ import { fakeDB } from './fakeDB';
 
 <Layout title="Keyboard | GABRLYG">
   <main class="flex flex-col w-full flex-grow px-4 max-w-5xl">
-    <KeyboardGallery keyboards={fakeDB} />
+    <KeyboardGallery keyboards={fakeDB} client:load />
   </main>
 </Layout>

@@ -33,7 +33,7 @@ export const fakeDB: Keyboard[] = [
     name: 'NRD Kaze (Silver)',
     model: 'NRD Kaze (Silver)',
     images: ['nrd-kaze-silver-og-1.jpg', 'nrd-kaze-silver-og-2.jpg'],
-    cover: 'nrd-kaze-silver-og-1.jpg',
+    cover: 'nrd-kaze-silver-og-2.jpg',
   },
   {
     name: 'NRD Kaze (Truffle Brown)',
