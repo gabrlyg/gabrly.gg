@@ -54,14 +54,21 @@ const Album: React.FC<Keyboard> = ({ name, images, cover }) => {
               src={`${PHOTO_PATH_PREFIX}${images[currentImage]}`}
             />
           </div>
-          <ul className="flex flex-row justify-center flex-shrink-0 gap-4 h-44">
+          <ul className="flex flex-row justify-center gap-4">
             {images.map((image, index) => {
               return (
                 <li key={index}>
-                  <img
-                    className="h-full min-w-40 object-contain"
-                    src={`${PHOTO_PATH_PREFIX}${image}`}
-                  />
+                  <button
+                    className=""
+                    onClick={() => {
+                      setCurrentImage(index);
+                    }}
+                  >
+                    <img
+                      className="max-h-44 min-w-40 object-contain"
+                      src={`${PHOTO_PATH_PREFIX}${image}`}
+                    />
+                  </button>
                 </li>
               );
             })}
