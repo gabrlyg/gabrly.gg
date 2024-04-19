@@ -73,10 +73,10 @@ const FullScreenMode: React.FC<FullScreenModeProps> = ({
   }, [currentImage, setCurrentImage]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black flex flex-col justify-between items-center gap-4 p-4">
+    <div className="fixed inset-0 z-50 bg-black flex flex-col justify-between items-center gap-4 py-4">
       {/* begin close button */}
       <button
-        className="flex justify-center flex-shrink-0 items-center w-10 h-10 text-slate-200 text-2xl self-end mt-4"
+        className="flex justify-center flex-shrink-0 items-center w-10 h-10 text-slate-200 text-2xl self-end mt-4 mr-4"
         onClick={handleClose}
         aria-label="Close"
       >
@@ -106,7 +106,7 @@ const FullScreenMode: React.FC<FullScreenModeProps> = ({
       </div>
       {/* end main image */}
       {/* begin thumbnail */}
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center px-4">
         <ul className="flex flex-row flex-shrink-0 overflow-x-auto overflow-y-hidden gap-4 h-40 w-full scroll-smooth snap-x items-center">
           {images.map((image, index) => (
             <ImageThumbnail
