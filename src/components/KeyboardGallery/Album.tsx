@@ -67,7 +67,7 @@ const FullScreenMode: React.FC<FullScreenModeProps> = ({
   return (
     <div className="fixed inset-0 bg-black flex flex-col justify-between gap-4 p-4">
       <button
-        className="flex justify-center flex-shrink-0 items-center w-10 h-10 bg-slate-200 text-slate-700 rounded-full self-end"
+        className="flex justify-center flex-shrink-0 items-center w-10 h-10 bg-slate-200 text-slate-700 rounded-full self-end mt-4"
         onClick={handleClose}
       >
         X
@@ -80,7 +80,7 @@ const FullScreenMode: React.FC<FullScreenModeProps> = ({
           src={`${PHOTO_PATH_PREFIX}${images[currentImage]}`}
         />
       </div>
-      <ul className="flex flex-row overflow-x-scroll gap-4 min-h-44 scroll-smooth snap-x items-center">
+      <ul className="flex flex-row overflow-x-auto overflow-y-hidden gap-4 min-h-44 scroll-smooth snap-x items-center justify-center">
         {images.map((image, index) => (
           <ImageThumbnail
             image={image}
