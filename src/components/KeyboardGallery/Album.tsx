@@ -39,7 +39,7 @@ const Album: React.FC<Keyboard> = ({ name, images, cover }) => {
         <label className="text-sm">{name}</label>
       </div>
       {isFullScreenOn && (
-        <div className="fixed inset-0 bg-black flex flex-col items-center justify-between gap-4 p-4">
+        <div className="fixed inset-0 bg-black flex flex-col justify-between gap-4 p-4">
           <button
             className="flex justify-center flex-shrink-0 items-center w-10 h-10 bg-slate-200 text-slate-700 rounded-full self-end"
             onClick={handleFullScreenClose}
@@ -54,7 +54,7 @@ const Album: React.FC<Keyboard> = ({ name, images, cover }) => {
               src={`${PHOTO_PATH_PREFIX}${images[currentImage]}`}
             />
           </div>
-          <ul className="flex flex-row justify-center gap-4">
+          <ul className="flex flex-row overflow-x-scroll gap-4 min-h-44 scroll-smooth">
             {images.map((image, index) => {
               return (
                 <li key={index}>
@@ -67,6 +67,7 @@ const Album: React.FC<Keyboard> = ({ name, images, cover }) => {
                     <img
                       className="max-h-44 min-w-40 object-contain"
                       src={`${PHOTO_PATH_PREFIX}${image}`}
+                      draggable={false}
                     />
                   </button>
                 </li>
