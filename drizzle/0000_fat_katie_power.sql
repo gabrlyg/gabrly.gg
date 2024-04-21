@@ -1,15 +1,3 @@
-DO $$ BEGIN
- CREATE TYPE "type" AS ENUM('keyboards', 'artisans');
-EXCEPTION
- WHEN duplicate_object THEN null;
-END $$;
---> statement-breakpoint
-CREATE TABLE IF NOT EXISTS "albums" (
-	"id" serial PRIMARY KEY NOT NULL,
-	"title" varchar(256),
-	"type" "type"
-);
---> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "artisan_wishlist" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"artisan_id" integer NOT NULL,
@@ -20,12 +8,13 @@ CREATE TABLE IF NOT EXISTS "artisan_wishlist" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "artisans" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"name" varchar(256),
+	"colourway" varchar(256),
 	"maker" varchar(256),
 	"sculpt" varchar(256),
-	"colourway" varchar(256),
 	"mount" varchar(256),
-	"description" varchar(1024)
+	"description" varchar(1024),
+	"cover_img" integer,
+	"added_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "images_artisans" (
@@ -41,17 +30,26 @@ CREATE TABLE IF NOT EXISTS "images_keyboards" (
 CREATE TABLE IF NOT EXISTS "images" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"url" varchar(256) NOT NULL,
-	"description" varchar(1024)
+	"description" varchar(1024),
+	"uploaded_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "keyboards" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"name" varchar(256),
-	"description" varchar(1024)
+	"description" varchar(1024),
+	"cover_img" integer,
+	"added_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "artisan_wishlist" ADD CONSTRAINT "artisan_wishlist_artisan_id_artisans_id_fk" FOREIGN KEY ("artisan_id") REFERENCES "artisans"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "artisans" ADD CONSTRAINT "artisans_cover_img_images_id_fk" FOREIGN KEY ("cover_img") REFERENCES "images"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
@@ -76,6 +74,12 @@ END $$;
 --> statement-breakpoint
 DO $$ BEGIN
  ALTER TABLE "images_keyboards" ADD CONSTRAINT "images_keyboards_keyboard_id_keyboards_id_fk" FOREIGN KEY ("keyboard_id") REFERENCES "keyboards"("id") ON DELETE no action ON UPDATE no action;
+EXCEPTION
+ WHEN duplicate_object THEN null;
+END $$;
+--> statement-breakpoint
+DO $$ BEGIN
+ ALTER TABLE "keyboards" ADD CONSTRAINT "keyboards_cover_img_images_id_fk" FOREIGN KEY ("cover_img") REFERENCES "images"("id") ON DELETE no action ON UPDATE no action;
 EXCEPTION
  WHEN duplicate_object THEN null;
 END $$;
