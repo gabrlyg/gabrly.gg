@@ -1,3 +1,4 @@
+import { relations } from 'drizzle-orm';
 import {
   pgTable,
   serial,
@@ -49,6 +50,46 @@ export const imageArtisans = pgTable('images_artisans', {
     .notNull()
     .references(() => artisans.id),
 });
+
+export const keyboardsRelations = relations(keyboards, ({ one, many }) => ({
+  imageKeyboards: many(imageKeyboards),
+  coverImg: one(images, {
+    fields: [keyboards.coverImg],
+    references: [images.id],
+  }),
+}));
+
+export const artisansRelations = relations(artisans, ({ many }) => ({
+  imageArtisans: many(imageArtisans),
+}));
+
+export const keyboardsToImagesRelations = relations(
+  imageKeyboards,
+  ({ one }) => ({
+    keyboard: one(keyboards, {
+      fields: [imageKeyboards.keyboardId],
+      references: [keyboards.id],
+    }),
+    images: one(images, {
+      fields: [imageKeyboards.imageId],
+      references: [images.id],
+    }),
+  })
+);
+
+export const artisansToImagesRelations = relations(
+  imageArtisans,
+  ({ one }) => ({
+    artisans: one(artisans, {
+      fields: [imageArtisans.artisanId],
+      references: [artisans.id],
+    }),
+    images: one(images, {
+      fields: [imageArtisans.imageId],
+      references: [images.id],
+    }),
+  })
+);
 
 export const artisanWishlist = pgTable('artisan_wishlist', {
   id: serial('id').primaryKey(),

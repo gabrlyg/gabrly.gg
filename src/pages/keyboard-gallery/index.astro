@@ -1,11 +1,17 @@
 ---
 import KeyboardGallery from '../../components/KeyboardGallery/KeyboardGallery';
 import Layout from '../../layouts/Layout.astro';
-import { fakeDB } from './fakeDB';
+// import { fakeDB } from './fakeDB';
+
+const response = await fetch(
+  `${Astro.url.origin}/api/keyboards/all-keyboards?coverOnly=true`
+);
+const data = await response.json();
 ---
 
 <Layout title="Keyboard | GABRLYG">
   <main class="flex flex-col w-full flex-grow px-4 max-w-5xl">
-    <KeyboardGallery keyboards={fakeDB} client:load />
+    <KeyboardGallery keyboards={data} client:load />
+    <!-- <div>{JSON.stringify(data)}</div> -->
   </main>
 </Layout>

@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import type { Keyboard } from '../../pages/keyboard-gallery/fakeDB';
+import { useQuery } from '@tanstack/react-query';
+
+import { fetchKeyboard, type Image, type Keyboard } from './api';
 
 interface ThumbnailProps {
   image: string;
@@ -9,8 +11,8 @@ interface ThumbnailProps {
 }
 
 interface FullScreenModeProps {
-  images: string[];
-  coverIndex: number;
+  keyboardId: number;
+  coverImgId: number;
   handleClose: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -58,18 +60,35 @@ const ImageThumbnail: React.FC<ThumbnailProps> = ({
 };
 
 const FullScreenMode: React.FC<FullScreenModeProps> = ({
-  images,
-  coverIndex,
+  keyboardId,
+  coverImgId,
   handleClose,
 }) => {
-  const [currentImage, setCurrentImage] = useState<number>(coverIndex);
+  const result = useQuery({
+    queryKey: ['keyboards', keyboardId],
+    queryFn: () => fetchKeyboard(keyboardId),
+  });
+
+  const [currentImage, setCurrentImage] = useState<number>(
+    result.data?.keyboard?.imageKeyboards?.findIndex(
+      (item: { images: Image }) => item.images.id === coverImgId
+    ) || 0
+  );
 
   const previousImage = useCallback(() => {
-    setCurrentImage(currentImage === 0 ? images.length - 1 : currentImage - 1);
+    setCurrentImage(
+      currentImage === 0
+        ? result.data?.keyboard.imageKeyboards.length - 1
+        : currentImage - 1
+    );
   }, [currentImage, setCurrentImage]);
 
   const nextImage = useCallback(() => {
-    setCurrentImage(currentImage === images.length - 1 ? 0 : currentImage + 1);
+    setCurrentImage(
+      currentImage === result.data?.keyboard.imageKeyboards.length - 1
+        ? 0
+        : currentImage + 1
+    );
   }, [currentImage, setCurrentImage]);
 
   return (
@@ -92,11 +111,13 @@ const FullScreenMode: React.FC<FullScreenModeProps> = ({
           onClick={previousImage}
           aria-label="Previous Image"
         >{`<`}</button>
-        <div className="w-full h-full">
-          <img
-            className="w-full h-full object-contain"
-            src={`${PHOTO_PATH_PREFIX}${images[currentImage]}`}
-          />
+        <div className="w-full h-full text-slate-200">
+          {result.data && (
+            <img
+              className="w-full h-full object-contain"
+              src={`${PHOTO_PATH_PREFIX}${result.data?.keyboard?.imageKeyboards[currentImage].images.url}`}
+            />
+          )}
         </div>
         <button
           className="w-10 h-10 text-2xl text-slate-200 flex-shrink-0"
@@ -107,25 +128,28 @@ const FullScreenMode: React.FC<FullScreenModeProps> = ({
       {/* end main image */}
       {/* begin thumbnail */}
       <div className="flex justify-center items-center px-4">
-        <ul className="flex flex-row flex-shrink-0 overflow-x-auto overflow-y-hidden gap-4 h-40 w-full scroll-smooth snap-x items-center">
-          {images.map((image, index) => (
-            <ImageThumbnail
-              image={image}
-              index={index}
-              selected={index === currentImage}
-              setCurrentImage={setCurrentImage}
-            />
-          ))}
-        </ul>
+        {result.data && (
+          <ul className="flex flex-row flex-shrink-0 overflow-x-auto overflow-y-hidden gap-4 h-40 w-full scroll-smooth snap-x items-center">
+            {result.data?.keyboard.imageKeyboards.map(
+              (image: { images: Image }, index: number) => (
+                <ImageThumbnail
+                  key={`image-${image.images.id}`}
+                  image={image.images.url}
+                  index={index}
+                  selected={index === currentImage}
+                  setCurrentImage={setCurrentImage}
+                />
+              )
+            )}
+          </ul>
+        )}
       </div>
       {/* end thumbnail */}
     </div>
   );
 };
 
-const Album: React.FC<Keyboard> = ({ name, images, cover }) => {
-  const coverImageIndex = images.findIndex((image) => image === cover);
-
+const Album: React.FC<Keyboard> = ({ id, name, coverImg }) => {
   const [isFullScreenOn, setIsFullScreenOn] = useState<boolean>(false);
 
   const openFullScreen: React.MouseEventHandler<HTMLButtonElement> =
@@ -152,7 +176,7 @@ const Album: React.FC<Keyboard> = ({ name, images, cover }) => {
       >
         <img
           className="aspect-square object-cover"
-          src={`${PHOTO_PATH_PREFIX}${cover}`}
+          src={`${PHOTO_PATH_PREFIX}${(coverImg as Image).url}`}
         />
         <label className="text-lg text-slate-100 font-bold absolute inset-0 p-4 opacity-0 flex bg-transparent transition-all duration-200 justify-center items-center group-hover/album:opacity-100 group-hover/album:bg-neutral-600/80 group-hover/album:cursor-zoom-in">
           {name}
@@ -160,8 +184,8 @@ const Album: React.FC<Keyboard> = ({ name, images, cover }) => {
       </button>
       {isFullScreenOn && (
         <FullScreenMode
-          images={images}
-          coverIndex={coverImageIndex}
+          keyboardId={id}
+          coverImgId={(coverImg as Image).id}
           handleClose={handleFullScreenClose}
         />
       )}
