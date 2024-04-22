@@ -50,7 +50,7 @@ const ImageThumbnail: React.FC<ThumbnailProps> = ({
         }}
       >
         <img
-          className="max-h-40 object-contain"
+          className="max-h-20 md:max-h-40 object-contain"
           src={`${PHOTO_PATH_PREFIX}${image}`}
           draggable={false}
         />
