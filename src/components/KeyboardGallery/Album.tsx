@@ -92,7 +92,7 @@ const FullScreenMode: React.FC<FullScreenModeProps> = ({
   }, [currentImage, setCurrentImage]);
 
   return (
-    <div className="fixed inset-0 z-50 bg-black flex flex-col justify-between items-center gap-4 py-4 z-[999]">
+    <div className="fixed inset-0 bg-black flex flex-col justify-between items-center gap-4 py-4 z-[999]">
       {/* begin close button */}
       <button
         className="flex justify-center flex-shrink-0 items-center w-10 h-10 text-slate-200 text-2xl self-end mt-4 mr-4"
