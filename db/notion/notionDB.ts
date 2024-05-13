@@ -29,8 +29,8 @@ export const getResinWishlist = async () => {
     return {
       // TODO: type safety warnings
       name: item.properties.Name.title[0].plain_text || '',
-      sculpt: item.properties.Sculpt.rich_text[0].plain_text || '',
-      maker: item.properties.Maker.rich_text[0].plain_text || '',
+      sculpt: item.properties.Sculpt.select.name || '',
+      maker: item.properties.Maker.select.name || '',
       stem: item.properties.Stem.multi_select.map((item) => item.name) || [],
       thumbnail: item.properties.Thumbnail.files[0].file.url || '',
       priority: item.properties.Priority.select.name || '',
