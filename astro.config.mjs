@@ -7,6 +7,10 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    domains: ['amazonaws.com'],
+    remotePatterns: [{ protocol: 'https' }],
+  },
   integrations: [react(), tailwind(), mdx()],
   output: 'server',
   adapter: vercel({
