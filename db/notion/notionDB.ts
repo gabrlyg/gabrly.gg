@@ -1,4 +1,3 @@
-// @ts-nochcek
 import { Client } from '@notionhq/client';
 import type { DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import type { ResinInWishlist } from '../../src/components/ResinCollection/type';
