@@ -1,39 +1,15 @@
 ---
 import Label from './Label.astro';
+import type { ResinInWishlist } from './type';
 
-interface Props {
-  url: string;
-  colourway?: string;
-  sculpt?: string;
-  mount?: string;
-  maker?: string;
-  thumbnail?: string;
-  note?: string;
-  priority?: string;
-  disableLink?: boolean;
-}
+interface Props extends ResinInWishlist {}
 
-const {
-  url,
-  colourway = '?',
-  sculpt = '?',
-  mount,
-  maker = '?',
-  thumbnail,
-  note,
-  priority,
-  disableLink = false,
-} = Astro.props;
+const { name, sculpt, maker, stem, thumbnail, priority } = Astro.props;
 
-const label = `${colourway} - ${sculpt}${mount && ` (${mount})`} - ${maker}`;
+const label = `${name} - ${sculpt}${stem} - ${maker}`;
 ---
 
-<a
-  {...disableLink ? {} : { href: url }}
-  aria-disabled={disableLink}
-  role="link"
-  aria-label={label}
->
+<div aria-label={label}>
   <div
     class="flex flex-col rounded-sm shadow-box-md overflow-hidden border-[2px] border-slate-600 gap-2"
   >
@@ -41,12 +17,12 @@ const label = `${colourway} - ${sculpt}${mount && ` (${mount})`} - ${maker}`;
       <img class="object-cover w-full h-full" src={thumbnail} alt={label} />
     </div>
     <div class="flex flex-col px-2 pb-3 gap-2">
-      <label class="text-sm">{colourway} - {sculpt}</label>
+      <label class="text-sm">{name} - {sculpt}</label>
       <div class="flex flex-row gap-2 text-wrap flex-wrap">
-        {maker && <Label type="maker" value={maker} />}
-        {mount && <Label type="mount" value={mount} />}
-        {priority && <Label type="priority" value={priority} />}
+        <Label type="maker" value={maker} />
+        <Label type="stem" value={Array.from(stem).join(' / ')} />
+        <Label type="priority" value={priority} />
       </div>
     </div>
   </div>
-</a>
+</div>

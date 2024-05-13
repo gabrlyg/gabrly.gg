@@ -1,19 +1,18 @@
 ---
-import type { MDXInstance } from 'astro';
 import Layout from '../../../layouts/Layout.astro';
 import List from '../../../components/ResinCollection/List.astro';
+import { trpc } from '../../../trpc/client';
 
-const resins = await Astro.glob('./*.mdx');
-
-const sortResinByRanking = (a: MDXInstance<Record<string, any>>, b: MDXInstance<Record<string, any>>) => {
-  const aRanking = a.frontmatter.ranking || 0;
-  const bRanking = b.frontmatter.ranking || 0;
-
-  return bRanking - aRanking;
+let resinsInWishlist;
+let isError = false;
+try {
+  resinsInWishlist = await trpc.resinWishlist.query();
+} catch (err) {
+  isError = true;
+  console.error('[ERROR] Failed to call Notion API via TRPC:', err);
 }
-
-const disableLinks = true;
 ---
+
 <Layout title="Resin Wishlist | GABRLYG">
-  <List title="Wishlist" resins={resins} disableLinks={disableLinks} sortingMethod={sortResinByRanking} />
+  {resinsInWishlist && <List title="Wishlist" resins={resinsInWishlist} />}
 </Layout>
