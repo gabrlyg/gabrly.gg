@@ -1,4 +1,4 @@
-import { publicProcedure, router } from './trpc';
+import { createCallerFactory, publicProcedure, router } from './trpc';
 import * as notionDB from '../../../db/notion/notionDB';
 
 export const appRouter = router({
@@ -13,3 +13,8 @@ export const appRouter = router({
 });
 
 export type AppRouter = typeof appRouter;
+
+// A caller is necessary to make calls for SSR
+// see: https://trpc.io/docs/server/server-side-calls
+const createCaller = createCallerFactory(appRouter);
+export const caller = createCaller({});

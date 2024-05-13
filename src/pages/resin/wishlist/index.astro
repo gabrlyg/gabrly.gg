@@ -1,12 +1,12 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import List from '../../../components/ResinCollection/List.astro';
-import { trpc } from '../../../trpc/client';
+import { caller } from '../../../trpc/server';
 
 let resinsInWishlist;
 let isError = false;
 try {
-  resinsInWishlist = await trpc.resinWishlist.query();
+  resinsInWishlist = await caller.resinWishlist();
 } catch (err) {
   isError = true;
   console.error('[ERROR] Failed to call Notion API via TRPC:', err);
