@@ -6,9 +6,12 @@ const getBaseUrl = () => {
   if (typeof window !== 'undefined') {
     return '';
   }
-  if (import.meta.env.VERCEL_URL) {
-    return `https://${import.meta.env.VERCEL_URL}`;
-  }
+  // if (import.meta.env.VERCEL_URL) {
+  //   return `https://${import.meta.env.VERCEL_URL}`;
+  // }
+
+  // TODO: Replace the above with Netlify
+
   return `http://localhost:${import.meta.env.PORT ?? 4321}`;
 };
 

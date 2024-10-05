@@ -3,17 +3,19 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 
-import vercel from '@astrojs/vercel/serverless';
+import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
   image: {
     domains: ['amazonaws.com'],
-    remotePatterns: [{ protocol: 'https' }],
+    remotePatterns: [
+      {
+        protocol: 'https',
+      },
+    ],
   },
   integrations: [react(), tailwind(), mdx()],
   output: 'server',
-  adapter: vercel({
-    edgeMiddleware: true,
-  }),
+  adapter: netlify(),
 });
