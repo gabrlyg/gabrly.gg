@@ -5,7 +5,14 @@ import type { ResinInWishlist } from './type';
 
 interface Props extends ResinInWishlist {}
 
-const { name, sculpt, maker, stem, thumbnail, priority } = Astro.props;
+const {
+  colourway: name,
+  sculpt,
+  maker,
+  stem,
+  image: thumbnail,
+  priority,
+} = Astro.props;
 
 const label = `${name} - ${sculpt}${stem} - ${maker}`;
 ---
@@ -31,7 +38,7 @@ const label = `${name} - ${sculpt}${stem} - ${maker}`;
             <Label type="stem" value={Array.from(stem).join(' / ')} />
           )
         }
-        <Label type="priority" value={priority} />
+        {priority && <Label type="priority" value={priority} />}
       </div>
     </div>
   </div>

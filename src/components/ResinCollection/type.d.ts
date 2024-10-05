@@ -1,11 +1,11 @@
 export interface Resin {
-  name: string;
+  colourway: string;
   sculpt: string;
   maker: string;
-  thumbnail: string;
+  image: string;
   stem: 'Topre' | 'MX' | 'BS' | 'BMX'[];
 }
 
 export interface ResinInWishlist extends Resin {
-  priority: 'Highest' | 'High' | 'Medium' | 'Low';
+  priority?: 'Highest' | 'High' | 'Medium' | 'Low';
 }

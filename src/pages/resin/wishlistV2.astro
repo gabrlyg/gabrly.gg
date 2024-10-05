@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import List from '../../components/ResinCollection/List.astro';
+import resinWishList from '../../../db/resin-wishlist.json';
+import type { ResinInWishlist } from '../../components/ResinCollection/type';
+---
+
+<Layout title="Resin Wishlist | GABRLYG">
+  <List title="Wishlist" resins={resinWishList as ResinInWishlist[]} />
+</Layout>

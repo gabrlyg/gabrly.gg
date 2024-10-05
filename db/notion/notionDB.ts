@@ -27,11 +27,11 @@ export const getResinWishlist = async () => {
     const item = listItem as DatabaseObjectResponse;
     return {
       // TODO: type safety warnings
-      name: item.properties.Name.title[0].plain_text || '',
+      colourway: item.properties.Name.title[0].plain_text || '',
       sculpt: item.properties.Sculpt.select.name || '',
       maker: item.properties.Maker.select.name || '',
       stem: item.properties.Stem.multi_select.map((item) => item.name) || [],
-      thumbnail: item.properties.Thumbnail.files[0].file.url || '',
+      image: item.properties.Thumbnail.files[0].file.url || '',
       priority: item.properties.Priority.select.name || '',
     } as ResinInWishlist;
   });
