@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --font-family-lato: "Lato", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-jetbrains-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-lato: "Lato", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-jetbrains-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   
   --aspect-ratio-4-3: 4 / 3;
   --aspect-ratio-3-2: 3 / 2;
   
-  --box-shadow-box-md: 4px 6px rgb(148 163 184 / var(--tw-bg-opacity));
+  --shadow-box-md: 4px 6px var(--tw-shadow-color, rgb(148 163 184));
 }
 
-.toggle-slider {
+@utility toggle-slider {
   content: "";
   border-radius: 0.125rem;
   background-color: rgb(51 65 85);
@@ -23,7 +23,7 @@
   transition: 0.2s;
 }
 
-.toggle-slider-on {
+@utility toggle-slider-on {
   transform: translateX(32px);
   background-color: rgb(226 232 240);
 }
