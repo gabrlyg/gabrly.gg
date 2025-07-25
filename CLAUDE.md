@@ -71,17 +71,20 @@ When working with the database, use the provided npm scripts for migrations and 
 This project uses Tailwind CSS v4 with the native Vite plugin instead of the deprecated @astrojs/tailwind integration.
 
 **Configuration Files:**
+
 - `src/styles/main.css` - Main stylesheet with `@import "tailwindcss"` and custom theme
 - `astro.config.mjs` - Contains `@tailwindcss/vite` plugin in vite.plugins array
 - No `tailwind.config.js` - configuration is now CSS-based using `@theme` directive
 
 **Custom Theme Variables:**
+
 - `--font-lato` and `--font-jetbrains-mono` for custom fonts
 - `--shadow-box-md` for custom box shadows with opacity support
 - `--aspect-ratio-*` for custom aspect ratios
 - Custom utilities defined with `@utility` directive (e.g., toggle-slider)
 
 **Important Notes:**
+
 - Custom styles use CSS variables and `@theme` blocks instead of JS configuration
 - Custom utilities work with Tailwind's variant system (hover:, before:, etc.)
 - Opacity modifiers work with custom shadows (shadow-box-md/50)
