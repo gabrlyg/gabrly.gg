@@ -29,13 +29,13 @@ npm run db:seed      # Seed database with initial data
 This is an Astro-based personal website (gabrly.gg) with the following key components:
 
 **Frontend Stack:**
-- Astro with SSR enabled (server output mode)
-- React components for interactive elements
-- Tailwind CSS for styling
+- Astro v5 with SSR enabled (server output mode)
+- React v19 components for interactive elements
+- Tailwind CSS v4 with native Vite plugin (no @astrojs/tailwind integration)
 - Deployed on Netlify
 
 **Backend Architecture:**
-- tRPC for type-safe API layer (src/trpc/)
+- tRPC v11 for type-safe API layer (src/trpc/)
 - Database: PostgreSQL with Drizzle ORM
 - Neon Database as PostgreSQL provider
 - Notion API integration for resin wishlist data
@@ -55,7 +55,7 @@ This is an Astro-based personal website (gabrly.gg) with the following key compo
 **Notable Features:**
 - Keyboard gallery with image management
 - Resin artisan collection and wishlist
-- 3D interactive elements (Three.js)
+- 3D interactive elements (Three.js) (/peasoup)
 - Notion API integration for dynamic wishlist updates
 
 **Database Schema:**
@@ -65,3 +65,23 @@ The app manages a keyboard/artisan collection with:
 - Wishlist functionality for artisans with priority levels
 
 When working with the database, use the provided npm scripts for migrations and seeding. The schema is defined in `db/schema.ts` using Drizzle ORM syntax.
+
+## Tailwind CSS v4 Configuration
+
+This project uses Tailwind CSS v4 with the native Vite plugin instead of the deprecated @astrojs/tailwind integration.
+
+**Configuration Files:**
+- `src/styles/main.css` - Main stylesheet with `@import "tailwindcss"` and custom theme
+- `astro.config.mjs` - Contains `@tailwindcss/vite` plugin in vite.plugins array
+- No `tailwind.config.js` - configuration is now CSS-based using `@theme` directive
+
+**Custom Theme Variables:**
+- `--font-lato` and `--font-jetbrains-mono` for custom fonts
+- `--shadow-box-md` for custom box shadows with opacity support
+- `--aspect-ratio-*` for custom aspect ratios
+- Custom utilities defined with `@utility` directive (e.g., toggle-slider)
+
+**Important Notes:**
+- Custom styles use CSS variables and `@theme` blocks instead of JS configuration
+- Custom utilities work with Tailwind's variant system (hover:, before:, etc.)
+- Opacity modifiers work with custom shadows (shadow-box-md/50)
